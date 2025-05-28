@@ -76,7 +76,7 @@ func Join_Account(c *gin.Context) {
 
 func Get_Account(c *gin.Context) {
 	var response []string
-	if err := connect.DB.Model(&model.Join{}).Order("Rand()").Select("profile").Find(&response).Limit(5).Error; err != nil {
+	if err := connect.DB.Model(&model.Join{}).Order("random()").Select("profile").Find(&response).Limit(5).Error; err != nil {
 		c.JSON(500, gin.H{"error": "fail to insert"})
 		return
 	}
