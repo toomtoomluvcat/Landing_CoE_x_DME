@@ -76,13 +76,17 @@ func Join_Account(c *gin.Context) {
 
 func Get_Account(c *gin.Context) {
 	var response []string
-	if err := connect.DB.Model(&model.Join{}).Order("random()").Select("profile").Limit(5).Find(&response).Error; err != nil {
-		c.JSON(500, gin.H{"error": "fail to insert"})
-		return
-	}
+
 	var count int64
 	if err := connect.DB.Model(&model.Join{}).Select("profile").Find(&response).Count(&count).Error; err != nil {
 		c.JSON(500, gin.H{"error": "fail to insert"})
+		return
+	}
+	if err := connect.DB.
+		Model(&model.Join{}).Limit(5).
+		Order("random()").
+		Pluck("profile", &response).Error; err != nil {
+		c.JSON(500, gin.H{"error": "fail to fetch"})
 		return
 	}
 	c.JSON(200, gin.H{"avatar": response, "count": count})
