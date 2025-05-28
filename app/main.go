@@ -25,5 +25,5 @@ func main() {
 	router.POST("/join", service.Join_Account)
 	router.GET("/profile", service.Get_Account)
 	router.GET("/Ping", Ping)
-	router.Run(":8000")
+	router.Run()
 }
