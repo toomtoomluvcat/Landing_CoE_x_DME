@@ -18,12 +18,13 @@ func Pg() {
 	if err != nil {
 		log.Fatalf("Fail to load env: %v", err)
 	}
-	Host := os.Getenv("Host")
-	Database := os.Getenv("DATABASE")
-	User := os.Getenv("USER")
-	Password := os.Getenv("PASSWORD")
-	Port := os.Getenv("PORT")
-	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=require TimeZone=Asia/Shanghai", Host, User, Password, Database, Port)
+	HOST := os.Getenv("HOST")
+	DATABASE := os.Getenv("DATABASE")
+	USERNAME := os.Getenv("USER")
+	PASSWORD := os.Getenv("PASSWORD")
+	PORT := os.Getenv("PORT")
+
+	dsn := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=require", HOST, PORT, USERNAME, PASSWORD, DATABASE)
 	DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		log.Fatalf("Fail to connect database: %v", err)
