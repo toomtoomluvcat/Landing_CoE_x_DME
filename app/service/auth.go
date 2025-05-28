@@ -64,7 +64,7 @@ func Join_Account(c *gin.Context) {
 			return
 		}
 	} else {
-		if err := connect.DB.Model(&model.Join{}).Where("email =?", req.Email).Updates(map[string]interface{}{"profile": req.Model}).Error; err != nil {
+		if err := connect.DB.Model(&model.Join{}).Where("email =?", req.Email).Updates(map[string]interface{}{"profile": req.Profile}).Error; err != nil {
 			fmt.Printf("error at :%v", err)
 			c.JSON(500, gin.H{"error": "Fail to update"})
 		}
