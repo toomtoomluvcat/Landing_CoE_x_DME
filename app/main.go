@@ -13,17 +13,19 @@ func Ping(c *gin.Context) {
 }
 
 func main() {
-	router := gin.Default()
-	router.Use(cors.New(cors.Config{
+	route := gin.Default()
+	route.Use(cors.New(cors.Config{
 		AllowOrigins:     []string{"*"},
 		AllowMethods:     []string{"GET", "POST", "PUT"},
 		AllowHeaders:     []string{"Origin", "Content-Type", "Accept"},
 		AllowCredentials: true,
 	}))
 	connect.Pg()
-	router.POST("/user", service.Check_Account)
-	router.POST("/join", service.Join_Account)
-	router.GET("/profile", service.Get_Account)
-	router.GET("/Ping", Ping)
-	router.Run()
+	route.POST("/join", service.Join_Account)
+	route.GET("/profile", service.Get_Account)
+	route.POST("/team", service.CreateTeam)
+	route.PUT("/team", service.JoinTeam)
+	route.GET("/team", service.GetAllTeam)
+	route.GET("/Ping", Ping)
+	route.Run(":8000")
 }

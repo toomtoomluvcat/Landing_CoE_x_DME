@@ -5,8 +5,6 @@ import (
 	"log"
 	"os"
 
-	// "scavenger_hunt/app/model"
-
 	"github.com/joho/godotenv"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -15,7 +13,7 @@ import (
 var DB *gorm.DB
 
 func Pg() {
-	err := godotenv.Load(".env")
+	err := godotenv.Load("../.env")
 	if err != nil {
 		log.Fatalf("Fail to load env: %v", err)
 	}
@@ -30,6 +28,6 @@ func Pg() {
 	if err != nil {
 		log.Fatalf("Fail to connect database: %v", err)
 	}
-
-	// DB.AutoMigrate(&model.Group{}, &model.Participant{}, &model.Join{})
+	// DB.Migrator().DropTable(&model.Group{}, &model.Join{})
+	// DB.AutoMigrate(&model.Group{}, &model.Join{})
 }
