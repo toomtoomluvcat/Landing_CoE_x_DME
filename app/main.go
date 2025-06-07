@@ -23,6 +23,7 @@ func main() {
 	connect.Pg()
 	route.POST("/join", service.Join_Account)
 	route.GET("/profile", service.Get_Account)
+	route.POST("/profile", service.GetProfile)
 	route.PUT("/profile", service.SetProfile)
 	route.POST("/team", service.CreateTeam)
 	route.PUT("/team", service.JoinTeam)
