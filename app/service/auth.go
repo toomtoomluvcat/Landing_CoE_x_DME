@@ -54,3 +54,16 @@ func Get_Account(c *gin.Context) {
 	}
 	c.JSON(200, gin.H{"avatar": response, "count": count})
 }
+
+func SetProfile(c *gin.Context) {
+	var req model.Join
+	if err := c.BindJSON(&req); err != nil {
+		c.JSON(400, gin.H{"error": "Invalid JSON payload"})
+		return
+	}
+	if err := connect.DB.Where("Email = ?", req.Email).Updates(&req).Error; err != nil {
+		c.JSON(500, gin.H{"error": fmt.Sprintf("Fail to update: %s:%v", req.Email, err.Error())})
+		return
+	}
+	c.JSON(200, gin.H{"message": fmt.Sprintf("update %s successfully", req.Email)})
+}

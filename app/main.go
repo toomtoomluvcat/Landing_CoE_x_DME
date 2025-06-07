@@ -23,9 +23,11 @@ func main() {
 	connect.Pg()
 	route.POST("/join", service.Join_Account)
 	route.GET("/profile", service.Get_Account)
+	route.PUT("/profile", service.SetProfile)
 	route.POST("/team", service.CreateTeam)
 	route.PUT("/team", service.JoinTeam)
 	route.GET("/team", service.GetAllTeam)
+	route.POST("/problem", service.GetProblem)
 	route.GET("/Ping", Ping)
-	route.Run(":8000")
+	route.Run()
 }

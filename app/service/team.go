@@ -70,7 +70,7 @@ func JoinTeam(c *gin.Context) {
 	if err != nil {
 		c.JSON(400, gin.H{"error": err.Error()})
 	}
-	c.JSON(200, gin.H{"message": "successfully to join group", "ID": group.ID})
+	c.JSON(200, gin.H{"message": "successfully to join group", "ID": group.ID, "Name": group.Name})
 }
 
 func GetAllTeam(c *gin.Context) {
@@ -93,15 +93,10 @@ func GetProblem(c *gin.Context) {
 		return
 	}
 
-	switch req.Code {
-	case "python":
-		c.JSON(200, gin.H{"message": "lkhs5"})
-		return
-	case "java":
-		c.JSON(200, gin.H{"message": "lkshs6"})
-		return
-	default:
-		c.JSON(400, gin.H{"error": "incorrect answer try again"})
+	var problem model.Problem
+	if err := connect.DB.Where("code = ?", req.Code).First(&problem).Error; err != nil {
+		c.JSON(404, gin.H{"error": "problem not found"})
 		return
 	}
+	c.JSON(200, problem)
 }

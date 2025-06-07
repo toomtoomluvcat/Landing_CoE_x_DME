@@ -3,11 +3,10 @@ package model
 import "gorm.io/gorm"
 
 type Group struct {
-	ID        uint
-	Name      string
-	Joins     []Join
-	Code      string `gorm:"uniqueIndex"`
-	ProblemID int64  `gorm:"foreignKey:GroupID"`
+	ID    uint
+	Name  string
+	Joins []Join
+	Code  string `gorm:"uniqueIndex"`
 }
 
 type Join struct {
@@ -20,4 +19,12 @@ type Join struct {
 	Link_1      string
 	Link_2      string
 	Link_3      string
+}
+
+type Problem struct {
+	ID      uint
+	Title   string
+	Problem string
+	Code    string
+	ImgUrl  string
 }
