@@ -13,7 +13,7 @@ import (
 var DB *gorm.DB
 
 func Pg() {
-	err := godotenv.Load(".env")
+	err := godotenv.Load()
 	if err != nil {
 		log.Fatalf("Fail to load env: %v", err)
 	}
@@ -28,6 +28,7 @@ func Pg() {
 	if err != nil {
 		log.Fatalf("Fail to connect database: %v", err)
 	}
+
 	// DB.Migrator().DropTable(&model.Group{}, &model.Join{})
 	// DB.AutoMigrate(&model.Group{}, &model.Join{}, &model.Problem{})
 }

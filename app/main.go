@@ -25,10 +25,10 @@ func main() {
 	route.GET("/profile", service.Get_Account)
 	route.POST("/profile", service.GetProfile)
 	route.PUT("/profile", service.SetProfile)
-	route.POST("/team", service.CreateTeam)
+	// route.POST("/team", service.CreateTeam)
 	route.PUT("/team", service.JoinTeam)
 	route.GET("/team", service.GetAllTeam)
 	route.POST("/problem", service.GetProblem)
-	route.GET("/Ping", Ping)
+	route.GET("/ping", Ping)
 	route.Run()
 }
