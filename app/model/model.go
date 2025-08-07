@@ -19,6 +19,7 @@ type Join struct {
 	Link_1      string
 	Link_2      string
 	Link_3      string
+	Rainbow     string
 }
 
 type Problem struct {
