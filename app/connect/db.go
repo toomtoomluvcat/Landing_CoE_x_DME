@@ -20,7 +20,7 @@ func Pg() {
 	}
 	HOST := os.Getenv("HOST")
 	DATABASE := os.Getenv("DATABASE")
-	USERNAME := os.Getenv("USER")
+	USERNAME := os.Getenv("USERNAME")
 	PASSWORD := os.Getenv("PASSWORD")
 	PORT := os.Getenv("PORT")
 
