@@ -19,7 +19,7 @@ type Join struct {
 	Link_1      string
 	Link_2      string
 	Link_3      string
-	Rainbow     bool
+	Rainbow     bool `gorm:"type:boolean"`
 }
 
 type Problem struct {

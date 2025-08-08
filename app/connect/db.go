@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"scavenger_hunt/app/model"
 
 	"github.com/joho/godotenv"
 	"gorm.io/driver/postgres"
@@ -30,5 +31,5 @@ func Pg() {
 	}
 
 	// DB.Migrator().DropTable(&model.Group{}, &model.Join{})
-	// DB.AutoMigrate(&model.Group{}, &model.Join{}, &model.Problem{})
+	DB.AutoMigrate(&model.Group{}, &model.Join{}, &model.Problem{})
 }
